@@ -1,5 +1,6 @@
 # maplotter
 地図にGPX、写真、コメントをプロットするJavaScriptライブラリを開発するためのリポジトリ。
+Leafletの各種プラグインの調査と、GeoJSONを調査する。
 
 # 概要
 - Leafletで地図描画。デフォルトではOpenStreetMapを利用
