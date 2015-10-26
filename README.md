@@ -14,8 +14,8 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
 - アクセスユーザー管理（管理者、ワークグループ、会員、一般）
 - DBに登録
 - DBから読み込み
-- KMLに出力
-- KMLを指定して読み込み
+- GeoJSONに出力
+- GeoJSONを指定して読み込み
 
 # 構成
 - map-plotter.js
