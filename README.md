@@ -26,7 +26,7 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
 - Bootstrap
     - レイアウトに利用
 - OpenStreetMap
-    - 最初に利用する地図。印刷が可能にしたいため
+    - 最初に利用する地図。印刷をしたいので
 
 # ファイル
 - map-plotter.js
