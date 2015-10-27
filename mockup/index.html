@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>am1-map-plotter-mockup</title>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" href="../../css/style-mapplotter.css" />
+  <link rel="stylesheet" href="../node_modules/leaflet-easybutton/src/easy-button.css" />
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.css" />
   <style>
     html, body, #panel-base {
       height: 100%;
@@ -23,19 +27,18 @@
   <div id="panel-base">
     <!-- 地図-->
     <div id="map"></div>
-    <!-- 詳細パネル-->
-    <div id="panel-desc"></div>
-    <!-- 詳細パネルボタン-->
-    <div id="btn-desc"></div>
   </div>
 
   <!-- スクリプト-->
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
   <script src="./datas/datas.js"></script>
   <script src="./mockup.js"></script>
+  <script src="../node_modules/leaflet-easybutton/src/easy-button.js"></script>
   <script>
     initLeaflet(datas[0].lat, datas[0].lng);
     setMarker(datas);
+    setButtons();
   </script>
 </body>
 </html>

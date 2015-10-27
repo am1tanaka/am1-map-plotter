@@ -39,3 +39,20 @@ function setMarker(datas) {
     mk.addTo(map);
   }
 }
+
+function setButtons() {
+  var helloPopup = L.popup().setContent('Hello World!');
+
+  L.easyButton('glyphicon-list', function(btn, map){
+      helloPopup.setLatLng(map.getCenter()).openOn(map);
+  }).addTo( map ); // probably just `map`
+
+  L.easyButton('glyphicon-tags', function(btn, map){
+      helloPopup.setLatLng(map.getCenter()).openOn(map);
+  }).addTo( map ); // probably just `map`
+
+  L.easyButton('glyphicon-floppy-disk', function(btn, map){
+      helloPopup.setLatLng(map.getCenter()).openOn(map);
+  }).addTo( map ); // probably just `map`
+
+}

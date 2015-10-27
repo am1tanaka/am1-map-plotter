@@ -1,0 +1,29 @@
+{
+  "name": "am1-map-plotter",
+  "version": "0.0.1",
+  "description": "leaflet map plotter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/am1tanaka/am1-map-plotter.git"
+  },
+  "keywords": [
+    "leaflet",
+    "map",
+    "gpx",
+    "geojson"
+  ],
+  "author": "YuTanaka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/am1tanaka/am1-map-plotter/issues"
+  },
+  "homepage": "https://github.com/am1tanaka/am1-map-plotter",
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "leaflet-easybutton": "^1.1.2"
+  }
+}
