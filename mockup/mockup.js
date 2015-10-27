@@ -10,7 +10,9 @@ var points = [];
 function initLeaflet(lat, lng) {
   // LeafletのOSM表示
   map = L.map('map').setView([lat, lng], 17);
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 }
 
 function setMarker(datas) {
