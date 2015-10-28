@@ -3,6 +3,7 @@
  */
 var map;
 var points = [];
+var sidebar = {};
 
 /**
  * Leafletの表示
@@ -55,4 +56,12 @@ function setButtons() {
       helloPopup.setLatLng(map.getCenter()).openOn(map);
   }).addTo( map ); // probably just `map`
 
+}
+
+function setSidebar() {
+  sidebar = L.control.sidebar('sidebar', {
+    position: 'right'
+  });
+  map.addControl(sidebar);
+  sidebar.show();
 }

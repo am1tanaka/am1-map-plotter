@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../node_modules/leaflet-easybutton/src/easy-button.css" />
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.css" />
+  <link rel="stylesheet" href="../plugins/L.Control.Sidebar.css" />
   <style>
     html, body, #panel-base {
       height: 100%;
@@ -27,18 +28,23 @@
   <div id="panel-base">
     <!-- 地図-->
     <div id="map"></div>
-  </div>
 
+    <div id="sidebar">
+        <h1>leaflet-sidebar</h1>
+    </div>
+  </div>
   <!-- スクリプト-->
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
   <script src="./datas/datas.js"></script>
   <script src="./mockup.js"></script>
   <script src="../node_modules/leaflet-easybutton/src/easy-button.js"></script>
+  <script src="../plugins/L.Control.Sidebar.js"></script>
   <script>
     initLeaflet(datas[0].lat, datas[0].lng);
     setMarker(datas);
     setButtons();
+    setSidebar(datas);
   </script>
 </body>
 </html>
