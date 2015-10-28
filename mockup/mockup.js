@@ -58,10 +58,34 @@ function setButtons() {
 
 }
 
-function setSidebar() {
-  sidebar = L.control.sidebar('sidebar', {
+/**　渡されたデータの内容をサイドバーに列挙して、出力*/
+function setSidebar(datas) {
+  sidebar = L.control.sidebar('data-list', {
     position: 'right'
   });
   map.addControl(sidebar);
+
+  // データを列挙
+  var dlist = "";//"<div class='container-fluid'>";
+  dlist += "<table class='table table-striped table-hover table-bordered'>";
+  for (var i=0 ; i<datas.length; i++) {
+    dlist += "<tr><td>";
+    // 画像
+    dlist += "<img class='data-list-photo' src='./datas/"+datas[i].photo+"' alt='"+datas[i].title+"' />";
+    // タイトル
+    dlist += "<div class='weight'>"+datas[i].title+"</div>";
+    // タグ
+    dlist += "<div class='help-block'>tags:";
+    for (var j=0 ; j<datas[i].tags.length ; j++) {
+      dlist += " "+datas[i].tags[j];
+    }
+    dlist += "</div>";
+    //
+    dlist += "</td></tr>";
+  }
+  dlist += "</table>";
+  dlist += "";//"</div>";
+  //
+  $('#data-list').html(dlist);
   sidebar.show();
 }

@@ -1,8 +1,5 @@
-// 共有ボタンクラス
-.mp-btn {
-}
-
-// ボタンを右上に配置
-.mp-btn-ru {
-
+/* データリストの写真のスタイル*/
+.data-list-photo {
+  float: left;
+  height: 48px;
 }
