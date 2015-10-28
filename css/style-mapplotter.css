@@ -1,5 +1,26 @@
+html, body, #panel-base {
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+#map {
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
 /* データリストの写真のスタイル*/
 .data-list-photo {
   float: left;
-  height: 48px;
+  max-width: 32px;
+  max-height: 48px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+/* データリストの本文*/
+.data-list-body {
+  position: absolute;
+  left: 100px;
 }
