@@ -17,10 +17,12 @@ html, body, #panel-base {
   max-width: 32px;
   max-height: 48px;
   border-radius: 5px;
-  margin-right: 10px;
 }
-/* データリストの本文*/
-.data-list-body {
-  position: absolute;
-  left: 100px;
+
+.text-protected {
+  color: #880;
+}
+
+.text-private {
+  color: #800;
 }
