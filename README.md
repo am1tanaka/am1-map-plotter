@@ -23,7 +23,7 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
     - Webページ内に組み込めるように、描画先のタグのIDを受け取ってその中に描画する。最低サイズは決める。
 - leaflet
     - 地図描画に利用
-    - https://github.com/hosuaby/Leaflet.SmoothMarkerBouncing
+    - [Leaflet.SmoothMarkerBouncing](https://github.com/hosuaby/Leaflet.SmoothMarkerBouncing)
       - [Copyright (c) 2015, Alexei KLENIN](https://github.com/hosuaby/Leaflet.SmoothMarkerBouncing/blob/master/LICENSE)
 - Bootstrap
     - レイアウトに利用
