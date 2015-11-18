@@ -224,8 +224,9 @@ function getInfoEditRow(datas, idx) {
   dlist += " onclick='backInfo("+idx+")'>";
   dlist += "<span class='glyphicon glyphicon-save-file' aria-hidden='true'></span>";
   dlist += "</button>";
-  //// 削除ボタン
-  dlist += "<button type='button' class='btn btn-default btn-xs' aria-label='Remove' data-toggle='tooltip' data-placement='right' title='キャンセル'>";
+  //// キャンセルボタン
+  dlist += "<button type='button' class='btn btn-default btn-xs' aria-label='Remove' data-toggle='tooltip' data-placement='right' title='キャンセル'";
+  dlist += " onclick='backInfo("+idx+")'>";
   dlist += "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
   dlist += "</button>";
   dlist += "</span>";
