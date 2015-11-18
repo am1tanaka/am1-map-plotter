@@ -29,6 +29,8 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
     - レイアウトに利用
 - OpenStreetMap
     - 最初に利用する地図。印刷をしたいので
+- マーカーにバリエーションを持たせるcoryasilva/Leaflet.ExtraMarkers
+  - https://github.com/coryasilva/Leaflet.ExtraMarkers
 
 # ファイル
 - map-plotter.js
