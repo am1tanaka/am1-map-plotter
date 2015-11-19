@@ -2,17 +2,23 @@
  * 変数
  */
 var map;
+/** データのある場所*/
 var points = [];
+/** 詳細を表示するデータ*/
 var sidebar = {};
 /** 表示中のデータ配列*/
 var dispDatas = [];
+/** マーカーのオブジェクト*/
+var markerIcons = {};
+/** 編集中のデータのインデックス*/
+var editIndex = -1;
 
 /**
  * Leafletの表示
  */
 function initLeaflet(lat, lng) {
   // LeafletのOSM表示
-  map = L.map('map').setView([lat, lng], 17);
+  map = L.map('map',{editable: true}).setView([lat, lng], 17);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
@@ -39,15 +45,38 @@ function getComment(comm) {
   return lines.join("<br/>");
 }
 
+function makeMarkers() {
+  markerIcons = {
+      STANDARD:   L.ExtraMarkers.icon({
+        icon: 'glyphicon-picture',
+        markerColor: 'blue',
+        iconColor: 'white'
+      }),
+      EDIT: L.ExtraMarkers.icon({
+        icon: 'glyphicon-pencil',
+        markerColor: 'yellow',
+        iconColor: 'white',
+        draggable: true
+      })
+  };
+}
+
 function setMarker(datas) {
   var mk;
   var pop;
+
+  // マーカーを作成
+  makeMarkers();
+
+//  L.marker([51.941196,4.512291], {icon: redMarker,}).addTo(map);
+
   for(var i=0 ; i<datas.length ; i++) {
     mk = L.marker(
       [datas[i].lat,datas[i].lng],
       {
         title: getTitle(datas[i].comment),
-        alt: datas[i].tags[0]
+        alt: datas[i].tags[0],
+        icon: markerIcons.STANDARD
       }
     ).on('click', function() {
       mk.bounce();
@@ -122,8 +151,19 @@ function setSidebar(datas) {
  * 編集へ
  */
 function changeEdit(idx) {
+  // 編集中の時は、前の処理をキャンセルするか聞く
+  if (editIndex != -1) {
+    alert("now editing");
+    return;
+  }
+
   var id = "#info"+idx;
+  editIndex = idx;
   $(id).html(getInfoEditRow(dispDatas, idx));
+  // マーカー変更
+  points[idx].setIcon(markerIcons.EDIT);
+  points[idx].setZIndexOffset(100);
+  points[idx].enableEdit();
 }
 
 /**
@@ -132,6 +172,10 @@ function changeEdit(idx) {
 function backInfo(idx) {
   var id = "#info"+idx;
   $(id).html(getInfoRow(dispDatas, idx));
+  points[editIndex].setIcon(markerIcons.STANDARD);
+  points[editIndex].setZIndexOffset(0);
+  points[editIndex].disableEdit();
+  editIndex = -1;
 }
 
 
