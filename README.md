@@ -26,6 +26,8 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
     - [leaflet.bouncemarker](https://github.com/maximeh/leaflet.bouncemarker)
       - [Copyright (c) 2014 Maxime Hadjinlian](https://github.com/maximeh/leaflet.bouncemarker/blob/master/LICENSE.txt)
     - Editable https://github.com/Leaflet/Leaflet.Editable
+      - gh-pagesブランチのものはleaflet1.0(beta)用
+      - 安定版で動かしたい時は、ブランチをVer0.7に変更して取得
 - Bootstrap
     - レイアウトに利用
 - OpenStreetMap
