@@ -25,6 +25,7 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
     - 地図描画に利用
     - [leaflet.bouncemarker](https://github.com/maximeh/leaflet.bouncemarker)
       - [Copyright (c) 2014 Maxime Hadjinlian](https://github.com/maximeh/leaflet.bouncemarker/blob/master/LICENSE.txt)
+    - Editable https://github.com/Leaflet/Leaflet.Editable
 - Bootstrap
     - レイアウトに利用
 - OpenStreetMap
