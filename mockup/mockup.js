@@ -183,7 +183,7 @@ function showOnlyInfo(idx) {
 
 function showAllInfo() {
   for (var i=0 ; i<datas.length ; i++) {
-    $('#inforow'+i).show();    
+    $('#inforow'+i).show();
   }
 }
 
@@ -258,19 +258,20 @@ function getInfoEditRow(datas, idx) {
 
   // 緯度経度
   dlist += "<div class='form-group row'>";
-  dlist += "<label class='col-sm-1 control-label'>緯度</label>";
-  dlist += "<div class='col-sm-4'>";
+  dlist += "<label class='col-sm-3 control-label'>緯度</label>";
+  dlist += "<div class='col-sm-9'>";
   dlist += "<input type='text' class='form-control input-sm' placeholder='35.151515' value='"+datas[idx].lat+"' />";
-  dlist += "</div>";
+  dlist += "</div></div>";
 
-  dlist += "<label class='col-sm-1 control-label'>経度</label>";
-  dlist += "<div class='col-sm-4'>";
+  dlist += "<div class='form-group row'>";
+  dlist += "<label class='col-sm-3 control-label'>経度</label>";
+  dlist += "<div class='col-sm-9'>";
   dlist += "<input type='text' class='form-control input-sm' placeholder='139.151515' value='"+datas[idx].lng+"' />";
   dlist += "</div></div>";
 
   // タグ
-  dlist += "<div class='form-group'>";
-  dlist += "<label class='col-sm-1 control-label'>tags:</label>";
+  dlist += "<div class='form-group row'>";
+  dlist += "<label class='col-sm-3 control-label'>tags:</label>";
   dlist += "<div class='col-sm-9'>";
   dlist += "<input type='text' class='form-control input-sm' placeholder='例)カモ 鳥' value='";
   for (var j=0 ; j<datas[idx].tags.length ; j++) {
