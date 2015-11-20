@@ -34,6 +34,7 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
         - lib/uniform/themes/default/css/uniform.default.min.css
         - lib/uniform/jquery.uniform.min.js
         - lib/uniform/themes/default/images フォルダー内の画像を plugins/imagesフォルダーにコピー
+        - カテゴリーの表示、非表示のサンプル view-source:http://chriscalip.github.io/L.UniformControl/examples/cluster-by-selected-categories.html
 - Bootstrap
     - レイアウトに利用
 - OpenStreetMap
