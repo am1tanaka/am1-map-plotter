@@ -124,7 +124,7 @@ function setSidebar(datas) {
   var dlist = "";//"<div class='container-fluid'>";
   dlist += "<table class='table table-hover table-bordered'>";
   for (var i=0 ; i<datas.length; i++) {
-    dlist += "<tr>";
+    dlist += "<tr id='inforow"+i+"'>";
 
     // 画像
     dlist += "<td>";
@@ -164,6 +164,27 @@ function changeEdit(idx) {
   points[idx].setIcon(markerIcons.EDIT);
   points[idx].setZIndexOffset(100);
   points[idx].enableEdit();
+  // 画面を中心に
+  setCenter(idx);
+  // 指定のデータ以外を隠す
+  showOnlyInfo(idx);
+}
+
+/**
+ * 指定のインデックスのデータ以外を全て隠す
+ */
+function showOnlyInfo(idx) {
+  $('#inforow'+idx).show();
+  for (var i=0 ; i<datas.length ; i++) {
+    if (i==idx) continue;
+    $('#inforow'+i).hide();
+  }
+}
+
+function showAllInfo() {
+  for (var i=0 ; i<datas.length ; i++) {
+    $('#inforow'+i).show();    
+  }
 }
 
 /**
@@ -176,6 +197,7 @@ function backInfo(idx) {
   points[editIndex].setZIndexOffset(0);
   points[editIndex].disableEdit();
   editIndex = -1;
+  showAllInfo();
 }
 
 
@@ -335,4 +357,12 @@ function getInfoRow(datas, idx) {
   dlist += "</div></small>";
 
   return dlist;
+}
+
+/**
+ * 指定のマーカーを画面中央にする
+ * @param int idx インデックス
+ */
+function setCenter(idx) {
+  map.panTo([datas[idx].lat,datas[idx].lng]);
 }
