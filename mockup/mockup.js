@@ -380,6 +380,8 @@ function setCenter(idx) {
  * 検索フォームの表示
  */
 function showFilterForm() {
+  var test="エナガ";
+  filters[test] = new L.LayerGroup();
 
   // initialize stylable leaflet control widget
   //// radio, check(overlay)
