@@ -28,6 +28,12 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
     - Editable https://github.com/Leaflet/Leaflet.Editable
       - gh-pagesブランチのものはleaflet1.0(beta)用
       - 安定版で動かしたい時は、ブランチをVer0.7に変更して取得
+    - 検索ウィンドウ
+      - L.UniformControl https://github.com/chriscalip/L.UniformControl
+      - uniform.jsなどは、libフォルダーに入っているので、以下を探してコピー
+        - lib/uniform/themes/default/css/uniform.default.min.css
+        - lib/uniform/jquery.uniform.min.js
+        - lib/uniform/themes/default/images フォルダー内の画像を plugins/imagesフォルダーにコピー
 - Bootstrap
     - レイアウトに利用
 - OpenStreetMap
