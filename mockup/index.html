@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>am1-map-plotter-mockup</title>
+  <link rel="stylesheet" href="../plugins/css/uniform.default.min.css" media="screen" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   <link rel="stylesheet" href="../css/style-mapplotter.css" />
   <link rel="stylesheet" href="../node_modules/leaflet-easybutton/src/easy-button.css" />
@@ -30,11 +31,14 @@
   <script src="../plugins/L.Control.Sidebar.js"></script>
   <script src="../plugins/bouncemarker.js"></script>
   <script src="../plugins/js/leaflet.extra-markers.min.js"></script>
+  <script src="../plugins/js/jquery.uniform.min.js"></script>
+  <script src="../plugins/js/UniformControl.min.js"></script>
   <script>
     initLeaflet(datas[0].lat, datas[0].lng);
     setMarker(datas);
     setButtons();
     setSidebar(datas);
+    showFilterForm();
   </script>
 </body>
 </html>

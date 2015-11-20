@@ -12,13 +12,21 @@ var dispDatas = [];
 var markerIcons = {};
 /** 編集中のデータのインデックス*/
 var editIndex = -1;
+/** フィルターリスト*/
+var filters = {
+  "カモ": new L.LayerGroup(),
+  "セキレイ": new L.LayerGroup()
+};
 
 /**
  * Leafletの表示
  */
 function initLeaflet(lat, lng) {
   // LeafletのOSM表示
-  map = L.map('map',{editable: true}).setView([lat, lng], 17);
+  map = L.map('map',{
+    editable: true,
+    layers: [filters.カモ, filters.セキレイ]
+  }).setView([lat, lng], 17);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
@@ -366,4 +374,31 @@ function getInfoRow(datas, idx) {
  */
 function setCenter(idx) {
   map.panTo([datas[idx].lat,datas[idx].lng]);
+}
+
+/**
+ * 検索フォームの表示
+ */
+function showFilterForm() {
+
+  // initialize stylable leaflet control widget
+  //// radio, check(overlay)
+  var control = L.control.UniForm(null, filters,{
+    collapsed: true,
+    position: 'topright'
+  });
+  // add control widget to map and html dom.
+  control.addTo(map);
+
+  // update the control widget to the specific theme.
+  control.renderUniformControl();
+
+  // 処理
+  map.on('overlayadd', function (a) {
+    alert("add "+a.name);
+    console.log(a);
+  });
+  map.on('overlayremove', function (a) {
+    alert("remove"+a.name);
+  });
 }
