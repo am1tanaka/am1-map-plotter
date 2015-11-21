@@ -31,7 +31,7 @@ function initLeaflet(lat, lng) {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
   /** フィルターフォームの作成*/
-  filterForm = L.control.window(map, {closeButton: false, position: 'bottomLeft'});
+  filterForm = L.control.window(map, {closeButton: false, position: 'bottomLeft', title: 'Filter'});
   filterForm.on('show', function(){filterFormVisible=true;});
   filterForm.on('hide', function(){filterFormVisible=false;});
 }
@@ -473,7 +473,7 @@ function setVisibleWithFilter() {
  */
 function showFilterForm() {
   // 表示内容を作成する
-  var html = "<div class='right'><a class='close' onclick='filterForm.hide();'>x</a></div>";
+  var html = "<div class='titlebar'><a class='close' onclick='filterForm.hide();'>×</a></div>";
 
   for (var i=0 ; i<tagList.length ; i++) {
     // 要素を確認
