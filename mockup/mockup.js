@@ -13,7 +13,11 @@ var markerIcons = {};
 /** 編集中のデータのインデックス*/
 var editIndex = -1;
 /** タグリスト。要素にタグ名とレイヤーオブジェクトのオブジェクト*/
-var tagList = {};
+var tagList = [];
+/** フィルター用のウィンドウオブジェクト*/
+var filterForm = {};
+/** フィルターフォームの表示フラグ*/
+var filterFormVisible = false;
 
 /**
  * Leafletの表示
@@ -26,6 +30,10 @@ function initLeaflet(lat, lng) {
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+  /** フィルターフォームの作成*/
+  filterForm = L.control.window(map, {closeButton: false, position: 'bottomLeft'});
+  filterForm.on('show', function(){filterFormVisible=true;});
+  filterForm.on('hide', function(){filterFormVisible=false;});
 }
 
 /**
@@ -43,9 +51,12 @@ function makeTagList(datas) {
  * 指定のタグがtagListになければ追加する
  */
 function addTagList(tag) {
-  if (!tagList.hasOwnProperty(tag)) {
-    tagList[tag] = new L.LayerGroup();
+  for (var i=0 ; i<tagList.length ; i++) {
+    if (tagList[i].tag === tag) {
+      return;
+    }
   }
+  tagList.push({tag: tag, visible: true});
 }
 
 /** コメントからタイトルを取り出して返す
@@ -127,7 +138,14 @@ function setButtons() {
   }).addTo( map ); // probably just `map`
 
   L.easyButton('glyphicon-search', function(btn, map){
-      helloPopup.setLatLng(map.getCenter()).openOn(map);
+    if (filterFormVisible) {
+      // 表示中だったら隠す
+      filterForm.hide();
+    }
+    else {
+      // 非表示だったら表示
+      showFilterForm();
+    }
   }).addTo( map ); // probably just `map`
 
   L.easyButton('glyphicon-floppy-disk', function(btn, map){
@@ -205,12 +223,6 @@ function showOnlyInfo(idx) {
   }
 }
 
-function showAllInfo() {
-  for (var i=0 ; i<datas.length ; i++) {
-    $('#inforow'+i).show();
-  }
-}
-
 /**
  * 情報パネルに戻る
  */
@@ -221,9 +233,8 @@ function backInfo(idx) {
   points[editIndex].setZIndexOffset(0);
   points[editIndex].disableEdit();
   editIndex = -1;
-  showAllInfo();
+  setVisibleWithFilter();
 }
-
 
 /**
  * 指定の配列の指定のインデックスの詳細を編集する右側のtdタグ内のHTMLを返す
@@ -392,30 +403,90 @@ function setCenter(idx) {
   map.panTo([datas[idx].lat,datas[idx].lng]);
 }
 
-var controlUniForm = {};
+/**
+ * フィルターのチェックを反映する
+ */
+function toggleFilters() {
+  var checked = $(".checkboxFilter:checked");
+  var seltags = [];
+  var i;
+  // タグリストを作成
+  for (i=0 ; i<checked.length ; i++) {
+    seltags.push($(checked[i]).val());
+  }
+
+  // フラグに反映させる
+  for (i=0 ; i<tagList.length; i++) {
+    tagList[i].visible = ($.inArray(tagList[i].tag, seltags) >= 0);
+  }
+
+  // 画面に反映させる
+  setVisibleWithFilter();
+}
+
+/**
+ * 指定のタグのオブジェクトを返す
+ * 見つからなかった時はnullを返す
+ */
+function getTagObject(tag) {
+  for (var i=0 ; i<tagList.length;i++) {
+    if (tag === tagList[i].tag) {
+      return tagList[i];
+    }
+  }
+  return null;
+}
+
+/** フィルターのチェック*/
+function setVisibleWithFilter() {
+  var vis = false;
+
+  // マーカーと詳細の表示設定を行う
+  for (i=0 ; i<dispDatas.length ; i++) {
+    // タグをチェック
+    vis = false;
+    for (var j=0 ; j<dispDatas[i].tags.length; j++) {
+      var tagdata = getTagObject(dispDatas[i].tags[j]);
+      if ((tagdata != null) && (tagdata.visible)) {
+        vis = true;
+        break;
+      }
+    }
+
+    // 表示設定
+    if (vis) {
+      // 表示
+      $('#inforow'+i).show();
+      points[i].addTo(map);
+    }
+    else {
+      // 非表示
+      $('#inforow'+i).hide();
+      map.removeLayer(points[i]);
+    }
+  }
+}
+
 
 /**
  * 検索フォームの表示
  */
 function showFilterForm() {
-  // initialize stylable leaflet control widget
-  //// radio, check(overlay)
-  controlUniForm = L.control.UniForm(null, tagList,{
-    collapsed: true,
-    position: 'topright'
-  });
-  // add control widget to map and html dom.
-  controlUniForm.addTo(map);
+  // 表示内容を作成する
+  var html = "<div class='right'><a class='close' onclick='filterForm.hide();'>x</a></div>";
 
-  // update the control widget to the specific theme.
-  controlUniForm.renderUniformControl();
+  for (var i=0 ; i<tagList.length ; i++) {
+    // 要素を確認
+    html += "<label class='checkbox-inline'>";
+    html += "<input type='checkbox' class='checkboxFilter' value='"+tagList[i].tag+"' "+(tagList[i].visible ? "checked" : "");
+    html += " onclick='toggleFilters()'";
+    html += " />"+tagList[i].tag;
+    html += "</label>";
+  }
 
-  // 処理
-  map.on('overlayadd', function (a) {
-    alert("add "+a.name);
-    console.log(controlUniForm);
-  });
-  map.on('overlayremove', function (a) {
-    alert("remove"+a.name);
-  });
+  // 内容を設定
+  filterForm.content(html);
+
+  // 非表示の時は表示
+  filterForm.show();
 }
