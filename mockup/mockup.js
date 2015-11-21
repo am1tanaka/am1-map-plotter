@@ -12,11 +12,8 @@ var dispDatas = [];
 var markerIcons = {};
 /** 編集中のデータのインデックス*/
 var editIndex = -1;
-/** フィルターリスト*/
-var filters = {
-  "カモ": new L.LayerGroup(),
-  "セキレイ": new L.LayerGroup()
-};
+/** タグリスト。要素にタグ名とレイヤーオブジェクトのオブジェクト*/
+var tagList = {};
 
 /**
  * Leafletの表示
@@ -24,12 +21,31 @@ var filters = {
 function initLeaflet(lat, lng) {
   // LeafletのOSM表示
   map = L.map('map',{
-    editable: true,
-    layers: [filters.カモ, filters.セキレイ]
+    editable: true
   }).setView([lat, lng], 17);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+}
+
+/**
+ * 渡されたデータのタグをチェックして、タグリストを作成する
+ */
+function makeTagList(datas) {
+  for(var i=0 ; i<datas.length ; i++) {
+    for (var j=0 ; j<datas[i].tags.length ; j++) {
+      addTagList(datas[i].tags[j]);
+    }
+  }
+}
+
+/**
+ * 指定のタグがtagListになければ追加する
+ */
+function addTagList(tag) {
+  if (!tagList.hasOwnProperty(tag)) {
+    tagList[tag] = new L.LayerGroup();
+  }
 }
 
 /** コメントからタイトルを取り出して返す
@@ -376,29 +392,28 @@ function setCenter(idx) {
   map.panTo([datas[idx].lat,datas[idx].lng]);
 }
 
+var controlUniForm = {};
+
 /**
  * 検索フォームの表示
  */
 function showFilterForm() {
-  var test="エナガ";
-  filters[test] = new L.LayerGroup();
-
   // initialize stylable leaflet control widget
   //// radio, check(overlay)
-  var control = L.control.UniForm(null, filters,{
+  controlUniForm = L.control.UniForm(null, tagList,{
     collapsed: true,
     position: 'topright'
   });
   // add control widget to map and html dom.
-  control.addTo(map);
+  controlUniForm.addTo(map);
 
   // update the control widget to the specific theme.
-  control.renderUniformControl();
+  controlUniForm.renderUniformControl();
 
   // 処理
   map.on('overlayadd', function (a) {
     alert("add "+a.name);
-    console.log(a);
+    console.log(controlUniForm);
   });
   map.on('overlayremove', function (a) {
     alert("remove"+a.name);
