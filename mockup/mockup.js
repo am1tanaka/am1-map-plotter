@@ -473,8 +473,19 @@ function setVisibleWithFilter() {
  */
 function showFilterForm() {
   // 表示内容を作成する
+  // 閉じるボタン
   var html = "<div class='titlebar'><a class='close' onclick='filterForm.hide();'>×</a></div>";
 
+  // 情報検索
+  html += "<div class='form-group'>";
+  html += "<label for='textFilter'>コメント検索</label>";
+  html += "<input type='text' class='form-control' id='textFilter' placeholder='タイトルやコメントから検索したいキーワード'>";
+  html += "</div>";
+
+  // タグ
+  html += "<div class='form-group'>";
+  html += "<label for='tagLists'>タグ指定</label>";
+  html += "<div id='tagLists'>";
   for (var i=0 ; i<tagList.length ; i++) {
     // 要素を確認
     html += "<label class='checkbox-inline'>";
@@ -483,6 +494,13 @@ function showFilterForm() {
     html += " />"+tagList[i].tag;
     html += "</label>";
   }
+  html += "</div>";
+
+  // 期間設定
+  html += "<div class='form-group'>";
+  html += "<label for='dateTimeFilter'>期間指定</label>";
+  html += "";
+  html += "</div>";
 
   // 内容を設定
   filterForm.content(html);
