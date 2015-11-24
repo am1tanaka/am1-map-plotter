@@ -497,9 +497,27 @@ function showFilterForm() {
   html += "</div>";
 
   // 期間設定
+  html += "<div class='row'>";
+  html += "<div class='col-sm-6' id='dateTimeFilterGroup'>";
   html += "<div class='form-group'>";
-  html += "<label for='dateTimeFilter'>期間指定</label>";
-  html += "";
+  html += "<label for='dtStart'>開始指定</label>";
+  html += "<div class='input-group date' id='dtStart'>";
+  html += "<input type='text' class='form-control' />";
+  html += "<span class='input-group-addon'>";
+  html += "<span class='glyphicon glyphicon-calendar'></span>";
+  html += "</span>";
+  html += "</div></div>";
+  html += "</div>";
+
+  html += "<div class='col-sm-6'>";
+  html += "<div class='form-group'>";
+  html += "<label for='dtEnd'>終了指定</label>";
+  html += "<div class='input-group date' id='dtEnd'>";
+  html += "<input type='text' class='form-control' />";
+  html += "<span class='input-group-addon'>";
+  html += "<span class='glyphicon glyphicon-calendar'></span>";
+  html += "</span>";
+  html += "</div></div></div>";
   html += "</div>";
 
   // 内容を設定
