@@ -36,6 +36,8 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
         - lib/uniform/themes/default/images フォルダー内の画像を plugins/imagesフォルダーにコピー
         - カテゴリーの表示、非表示のサンプル view-source:http://chriscalip.github.io/L.UniformControl/examples/cluster-by-selected-categories.html
       - 日時指定コントロール http://eonasdan.github.io/bootstrap-datetimepicker/
+        - bowerでインストール
+        - 必要な読み込みを追加
 - Bootstrap
     - レイアウトに利用
 - OpenStreetMap
