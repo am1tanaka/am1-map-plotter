@@ -38,6 +38,7 @@ Leafletの各種プラグインの調査と、GeoJSONを調査する。
       - 日時指定コントロール http://eonasdan.github.io/bootstrap-datetimepicker/
         - bowerでインストール
         - 必要な読み込みを追加
+      - moment.jsが必要
 - Bootstrap
     - レイアウトに利用
 - OpenStreetMap
