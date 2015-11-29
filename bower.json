@@ -1,0 +1,27 @@
+{
+  "name": "am1-map-plotter",
+  "description": "leaflet map plotter",
+  "main": "index.html",
+  "authors": [
+    "YuTanaka"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "leaflet",
+    "map",
+    "gpx",
+    "geojson"
+  ],
+  "homepage": "https://github.com/am1tanaka/am1-map-plotter",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37"
+  }
+}
