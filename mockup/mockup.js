@@ -502,7 +502,7 @@ function showFilterForm() {
   html += "<div class='form-group'>";
   html += "<label for='dtStart'>開始指定</label>";
   html += "<div class='input-group date' id='dtStart'>";
-  html += "<input type='text' class='form-control' />";
+  html += "<input type='text' class='form-control' placeholder='2015/11/29 13:00:00' />";
   html += "<span class='input-group-addon'>";
   html += "<span class='glyphicon glyphicon-calendar'></span>";
   html += "</span>";
@@ -513,7 +513,7 @@ function showFilterForm() {
   html += "<div class='form-group'>";
   html += "<label for='dtEnd'>終了指定</label>";
   html += "<div class='input-group date' id='dtEnd'>";
-  html += "<input type='text' class='form-control' />";
+  html += "<input type='text' class='form-control' placeholder='2015/11/29 14:00:00'/>";
   html += "<span class='input-group-addon'>";
   html += "<span class='glyphicon glyphicon-calendar'></span>";
   html += "</span>";
@@ -523,6 +523,27 @@ function showFilterForm() {
   // 内容を設定
   filterForm.content(html);
 
+  // 設定
+  setDatePicker();
+
   // 非表示の時は表示
   filterForm.show();
+}
+
+/**
+ * 日付コントロールを有効にする
+ */
+function setDatePicker() {
+  var fm = "YYYY/M/D H:mm:ss";
+  $('#dtStart').datetimepicker({format: fm});
+  $('#dtEnd').datetimepicker({
+      useCurrent: false, //Important! See issue #1075
+      format: fm
+  });
+  $("#dtStart").on("dp.change", function (e) {
+      $('#dtEnd').data("DateTimePicker").minDate(e.date);
+  });
+  $("#dtEnd").on("dp.change", function (e) {
+      $('#dtStart').data("DateTimePicker").maxDate(e.date);
+  });
 }
